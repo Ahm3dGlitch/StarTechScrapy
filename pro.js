@@ -22,19 +22,19 @@ async function getPdata() {
       const code = $(this).find("td.product-code").text();
       const brand = $(this).find("td.product-brand").text();
       const details =$(this).find("ul>li").text();
-      const specs = ($(this).find("table.flex-table").text().replaceAll('\n','')).replaceAll(' ','');
+      const specs = $(this).find("table.flex-table:nth-of-type(1) tr").text();
       prod_Data.push({
         name,image,discountPrice,oldPrice,status,code,brand,details,specs
       })
     });
-    //console.log(prod_Data);
-    fs.writeFile("profile.json", JSON.stringify(prod_Data, null, 2), (err) => {
+    console.log(prod_Data);
+    /*fs.writeFile("profile.json", JSON.stringify(prod_Data, null, 2), (err) => {
         if (err) {
           console.error(err);
           return;
         }
         console.log("Successfully written data to file");
-    });
+    });*/
   }
   catch (error) {
     console.error(error);
