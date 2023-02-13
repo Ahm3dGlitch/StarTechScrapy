@@ -10,15 +10,17 @@ async function getPdata(){
         const response = await axios.get(url);
         const $= cheerio.load(response.data);
         
-        const products = $('ul.level-0 > div> a');
+        const products = $('div');
         products.each((idx, el)=> {
-            const categorylist = {name:'',slug:''};
-            categorylist.name = $(el).children('a').text();
-            categorylist.slug = $(el).children('#page > div > div.headerWrapper > div > div.menuWrapper > div > div > div.menu-container > div.menu > ul.level-0 > li:nth-child(4) > div > a').attr('href');
+            setTimeout(function(){
+                const categorylist = {name:'',slug:''};
+                categorylist.name = $(el).children('a').text();
+                categorylist.slug = $(el).children('a').attr('href');
+                category.push({
+                    categorylist
+                });
+            },1);
             
-            category.push({
-                categorylist
-            });
             
         });
         /*console.log(category);
