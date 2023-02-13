@@ -8,7 +8,7 @@ request(url, (error, response, html) => {
     const $ = cheerio.load(html);
     const categories = [];
 
-    // Find the category elements and extract the text
+    
     $('.level-0 li a').each((i, el) => {
       const category = $(el).text().trim();
       categories.push(category);
