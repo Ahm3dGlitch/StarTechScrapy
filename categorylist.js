@@ -11,7 +11,8 @@ request(url, (error, response, html) => {
     
     $('.level-0 li a').each((i, el) => {
       const category = $(el).text().trim();
-      categories.push(category);
+      const slug = $(el).attr('href');
+      categories.push(category,slug);
     });
     fs.writeFile("coutries.json", JSON.stringify(categories, null, 2), (err) => {
       if (err) {
